@@ -1,0 +1,9 @@
+<resources>
+    <string name="qr_title">扫一扫</string>
+    <string name="qr_txt_desc">识别二维码</string>
+    <string name="qr_waiting">请稍后...</string>
+    <string name="qr_tips_album">选择要识别的图片</string>
+    <string name="qr_tips_album_fail">获取图片失败！</string>
+    <string name="qr_tips_fail">识别失败！</string>
+    <string name="qr_tips_permission_camera">摄像头权限被拒绝！</string>
+</resources>

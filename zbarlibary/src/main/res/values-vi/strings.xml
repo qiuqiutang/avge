@@ -1,0 +1,9 @@
+<resources>
+    <string name="qr_title">Quét mã</string>
+    <string name="qr_txt_desc">Nhận dạng mã QR</string>
+    <string name="qr_waiting">Vui lòng chờ </string>
+    <string name="qr_tips_album">Chọn ảnh để nhận dạng</string>
+    <string name="qr_tips_album_fail">Không thể tải hình ảnh！</string>
+    <string name="qr_tips_fail">Nhận dạng thất bại</string>
+    <string name="qr_tips_permission_camera">Đã từ chối quyền đối với máy ảnh！</string>
+</resources>

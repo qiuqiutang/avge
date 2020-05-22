@@ -1,0 +1,9 @@
+<resources>
+    <string name="qr_title">Scan</string>
+    <string name="qr_txt_desc">QR code</string>
+    <string name="qr_waiting">Waiting</string>
+    <string name="qr_tips_album">Select the image from album!</string>
+    <string name="qr_tips_album_fail">Failed to get image！</string>
+    <string name="qr_tips_fail">Identification failure！</string>
+    <string name="qr_tips_permission_camera">Camera permission denied！</string>
+</resources>

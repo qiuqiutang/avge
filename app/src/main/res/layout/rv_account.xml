@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_gray"
+    android:layout_marginTop="@dimen/y2"
+    >
+
+    <LinearLayout
+        android:layout_width="@dimen/x70"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/y2"
+
+        >
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="王二小"
+        android:layout_marginLeft="@dimen/x6"
+        android:textColor="@color/order_now_rv_text"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="默认"
+            android:textColor="@color/red"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/bg_rad_gray_line"
+            />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="@dimen/x60"
+        android:layout_height="wrap_content"
+        android:text="重庆市渝中区上清寺中山三路中安国际大厦505B"
+        android:layout_marginLeft="@dimen/x6"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="131154564789"
+            android:layout_marginLeft="@dimen/x6"
+            />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="@dimen/x7"
+        android:layout_height="@dimen/y5"
+        android:src="@drawable/order_call"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/x10"
+        />
+</LinearLayout>

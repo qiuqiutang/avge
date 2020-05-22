@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragment.HomeAvgeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y5"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@drawable/bg_avge_auto_gray_line"
+        >
+
+        <ImageView
+            android:layout_width="@dimen/x7"
+            android:layout_height="@dimen/y4"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp_15"
+            android:visibility="gone"
+            android:src="@drawable/ly_return" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="供应商优惠"
+            android:textColor="@color/home_head_text"
+
+            android:textSize="@dimen/dp_20" />
+
+        <ImageView
+            android:layout_width="@dimen/x7"
+            android:layout_height="@dimen/y4"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_15"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/avge_note" />
+    </RelativeLayout>
+
+    <com.youth.banner.Banner
+        android:id="@+id/discount_banner"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y21"
+        app:indicator_drawable_selected="@drawable/ly_banner_select"
+        app:indicator_height="8dp"
+        app:indicator_width="8dp"
+        android:layout_marginTop="@dimen/x2"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="——优惠活动——"
+        android:textColor="@color/discount_text"
+        android:textSize="@dimen/sp_20"
+        />
+   <androidx.recyclerview.widget.RecyclerView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/discount_rv"
+       >
+   </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

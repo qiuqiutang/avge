@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/order_background"
+
+    tools:context=".fragment.HomeAvgeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y5"
+            android:background="@drawable/bg_home_gray_line"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_30">
+
+            <ImageView
+                android:layout_width="@dimen/x7"
+                android:layout_height="@dimen/y4"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:src="@drawable/ly_return" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="消息"
+                android:textColor="@color/home_head_text"
+                android:textSize="@dimen/dp_20" />
+
+            <ImageView
+                android:layout_width="@dimen/x7"
+                android:layout_height="@dimen/y4"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_15"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/news_qingchu" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y81"
+        android:layout_marginTop="@dimen/y19"
+        android:background="#F2EBEB"
+        >
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/news_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y14"
+        android:layout_marginLeft="@dimen/x3"
+        android:layout_marginRight="@dimen/x3"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</FrameLayout>

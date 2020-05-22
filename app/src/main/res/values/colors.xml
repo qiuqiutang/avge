@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#22619F</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="home_bottom">#2373B4</color>
+    <color name="home_text">#C5DFFB</color>
+    <color name="home_head"> #214F8B</color>
+    <color name="home_head_text">#73B9EE</color>
+    <color name="home_body_text">#FFFEFE</color>
+    <color name="home_navigation_bg">#204C88</color>
+    <color name="login_bg">#34353B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="avge_msg_text">#DEEFFC</color>
+    <color name="discount_text">#2263AD</color>
+    <color name="discount_rv_text">  #232020</color>
+    <color name="order_background"> #22619F</color>
+    <color name="order_now_text">#5690CE</color>
+    <color name="order_now_rv_text">#181616</color>
+    <color name="black">#181616</color>
+    <color name="red">#A74141</color>
+    <color name="gray">#F2EBEB</color>
+    <color name="transparent">#00000000</color>
+   <!-- 登录文字颜色-->
+    <color name="ly_activity_tv_color">#333333</color>
+    <color name="ly_activity_account_order_tv_color">#797679</color>
+    <!--下拉列编背景颜色-->
+    <color name="avge_list_tv_color1">#4A99D4</color>
+    <color name="avge_list_tv_color2">#4DADEA</color>
+    <color name="bg_dispatching"> #69ABF2</color>
+
+    <color name="color_main">#73B9EE</color>
+    <color name="color_tab_back">#22619F</color>
+    <color name="color_tab_selected">#73B9EE</color>
+    <color name="separation_color">#E6E6E6</color>
+    <color name="color_333333">#333333</color>
+    <color name="color_666666">#666666</color>
+    <color name="color_999999">#999999</color>
+
+    <color name="tab_checked">@color/color_tab_selected</color>
+    <color name="tab_unchecked">#A4A4A4</color>
+
+</resources>

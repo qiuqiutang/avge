@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/login_bg"
+    tools:context=".activity.LoginOptionActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_logo"
+        android:id="@+id/login_option_iv"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:minWidth="200dp"
+        android:layout_height="50dp"
+        android:text="@string/login_type_user"
+        android:gravity="center"
+        android:textColor="@color/home_body_text"
+        android:textSize="@dimen/text_title_secondary"
+        android:layout_marginTop="100dp"
+        android:id="@+id/login_option_user_tv"
+        android:background="@drawable/bg_login_gray"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:minWidth="200dp"
+        android:layout_height="50dp"
+        android:text="@string/login_type_supplier"
+        android:gravity="center"
+        android:textColor="@color/home_body_text"
+        android:textSize="@dimen/text_title_secondary"
+        android:id="@+id/login_option_supplier_tv"
+        android:layout_marginTop="@dimen/dp_30"
+        android:background="@drawable/bg_login_gray"
+        />
+</LinearLayout>

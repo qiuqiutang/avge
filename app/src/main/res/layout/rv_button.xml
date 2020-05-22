@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="test"
+    android:layout_gravity="center"
+    android:id="@+id/text1"
+    android:paddingLeft="@dimen/x7"
+    android:paddingRight="@dimen/x7"
+    android:paddingTop="@dimen/x2"
+    android:paddingBottom="@dimen/x2"
+    >
+
+</TextView>

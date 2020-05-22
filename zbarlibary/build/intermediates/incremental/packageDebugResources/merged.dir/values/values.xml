@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_color">#ff5f00</color>
+    <declare-styleable name="CornerView">
+        <attr format="color" name="corner_color"/>
+        <attr format="dimension" name="corner_width"/>
+        <attr format="enum" name="corner_gravity">
+            <enum name="leftBottom" value="1"/>
+            <enum name="rightBottom" value="3"/>
+            <enum name="leftTop" value="0"/>
+            <enum name="rightTop" value="2"/>
+        </attr>
+    </declare-styleable>
+    <string name="qr_tips_album">Select the image from album!</string>
+    <string name="qr_tips_album_fail">Failed to get image！</string>
+    <string name="qr_tips_fail">Identification failure！</string>
+    <string name="qr_tips_permission_camera">Camera permission denied！</string>
+    <string name="qr_title">Scan</string>
+    <string name="qr_txt_desc">QR code</string>
+    <string name="qr_waiting">Waiting</string>
+    <style name="ActivityTranslucent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+    </style>
+    <style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>

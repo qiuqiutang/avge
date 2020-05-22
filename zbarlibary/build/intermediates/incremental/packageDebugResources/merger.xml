@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res"/><source path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/build/generated/res/rs/debug"/><source path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res"><file name="dialog_pro_color" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/color/dialog_pro_color.xml" qualifiers="" type="color"/><file name="circle_trans_black" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/drawable/circle_trans_black.xml" qualifiers="" type="drawable"/><file name="shape_dialog_bg" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/drawable/shape_dialog_bg.xml" qualifiers="" type="drawable"/><file name="scanner_album" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/drawable-xhdpi/scanner_album.png" qualifiers="xhdpi-v4" type="drawable"/><file name="scanner_back_img" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/drawable-xhdpi/scanner_back_img.png" qualifiers="xhdpi-v4" type="drawable"/><file name="scanner_light" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/drawable-xhdpi/scanner_light.png" qualifiers="xhdpi-v4" type="drawable"/><file name="shadow" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/drawable-xhdpi/shadow.png" qualifiers="xhdpi-v4" type="drawable"/><file name="wode_back" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/drawable-xxhdpi/wode_back.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="activity_qr" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/layout/activity_qr.xml" qualifiers="" type="layout"/><file name="dialog_loading" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/layout/dialog_loading.xml" qualifiers="" type="layout"/><file name="view_scan" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/layout/view_scan.xml" qualifiers="" type="layout"/><file name="qrcode" path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/raw/qrcode.mp3" qualifiers="" type="raw"/><file path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/values/attrs.xml" qualifiers=""><declare-styleable name="CornerView">
+        <attr format="color" name="corner_color"/>
+        <attr format="dimension" name="corner_width"/>
+        <attr format="enum" name="corner_gravity">
+            <enum name="leftBottom" value="1"/>
+            <enum name="rightBottom" value="3"/>
+            <enum name="leftTop" value="0"/>
+            <enum name="rightTop" value="2"/>
+        </attr>
+    </declare-styleable></file><file path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/values/colors.xml" qualifiers=""><color name="common_color">#ff5f00</color></file><file path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/values/strings.xml" qualifiers=""><string name="qr_title">Scan</string><string name="qr_txt_desc">QR code</string><string name="qr_waiting">Waiting</string><string name="qr_tips_album">Select the image from album!</string><string name="qr_tips_album_fail">Failed to get image！</string><string name="qr_tips_fail">Identification failure！</string><string name="qr_tips_permission_camera">Camera permission denied！</string></file><file path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/values/styles.xml" qualifiers=""><style name="AlertDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style><style name="ActivityTranslucent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+    </style></file><file path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/values-vi/strings.xml" qualifiers="vi"><string name="qr_title">Quét mã</string><string name="qr_txt_desc">Nhận dạng mã QR</string><string name="qr_waiting">Vui lòng chờ </string><string name="qr_tips_album">Chọn ảnh để nhận dạng</string><string name="qr_tips_album_fail">Không thể tải hình ảnh！</string><string name="qr_tips_fail">Nhận dạng thất bại</string><string name="qr_tips_permission_camera">Đã từ chối quyền đối với máy ảnh！</string></file><file path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/main/res/values-zh/strings.xml" qualifiers="zh"><string name="qr_title">扫一扫</string><string name="qr_txt_desc">识别二维码</string><string name="qr_waiting">请稍后...</string><string name="qr_tips_album">选择要识别的图片</string><string name="qr_tips_album_fail">获取图片失败！</string><string name="qr_tips_fail">识别失败！</string><string name="qr_tips_permission_camera">摄像头权限被拒绝！</string></file></source><source path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/build/generated/res/rs/debug"/><source path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/build/generated/res/resValues/debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/debug/res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/Users/qiuyantang/Downloads/LyFuelGas/zbarlibary/src/debug/res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="CornerView">
+        <attr format="color" name="corner_color"/>
+        <attr format="dimension" name="corner_width"/>
+        <attr format="enum" name="corner_gravity">
+            <enum name="leftBottom" value="1"/>
+            <enum name="rightBottom" value="3"/>
+            <enum name="leftTop" value="0"/>
+            <enum name="rightTop" value="2"/>
+        </attr>
+    </declare-styleable></configuration></mergedItems></merger>

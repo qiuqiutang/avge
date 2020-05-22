@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_gray2"
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y17"
+        android:src="@drawable/login_logo"
+        android:layout_marginTop="@dimen/y3"
+        android:layout_marginLeft="@dimen/x3"
+        android:layout_marginRight="@dimen/x3"
+        android:id="@+id/discount_rv_iv"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="优惠精选超值购"
+        android:textColor="@color/discount_rv_text"
+        android:layout_marginTop="@dimen/y1"
+        android:layout_marginLeft="@dimen/x3"
+        android:textSize="@dimen/sp_16"
+        android:id="@+id/discount_rv_tv"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/discount_text"
+        android:layout_marginTop="@dimen/y2"
+        android:layout_marginLeft="@dimen/x3"
+        android:layout_marginRight="@dimen/x3"
+        />
+</LinearLayout>
