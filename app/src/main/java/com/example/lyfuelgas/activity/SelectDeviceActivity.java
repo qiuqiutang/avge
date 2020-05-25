@@ -1,17 +1,21 @@
 package com.example.lyfuelgas.activity;
 
+import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.example.lyfuelgas.R;
 import com.example.lyfuelgas.app.UserManager;
 import com.example.lyfuelgas.bean.DeviceObject;
 import com.example.lyfuelgas.bean.DeviceTypeObject;
+import com.example.lyfuelgas.common.exit.PressExit;
 import com.example.lyfuelgas.common.mvp.MVPBaseActivity;
 import com.example.lyfuelgas.common.utils.GsonUtils;
 import com.example.lyfuelgas.common.utils.ProgressDialogUtils;
 import com.example.lyfuelgas.common.utils.SPUtils;
 import com.example.lyfuelgas.contact.SelectDeviceContact;
 import com.example.lyfuelgas.presenter.SelectDevicePresenter;
+import com.example.lyfuelgas.view.CustomConfirmDialog;
 import com.example.lyfuelgas.view.SimpleToolbar;
 import com.example.lyfuelgas.view.treerecycleview.TreeRecyclerAdapter;
 import com.example.lyfuelgas.view.treerecycleview.TreeRecyclerType;
@@ -64,7 +68,7 @@ public class SelectDeviceActivity extends MVPBaseActivity<SelectDevicePresenter>
         toolbar.setLeftTitleClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                exit();
             }
         });
         mAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
@@ -103,4 +107,31 @@ public class SelectDeviceActivity extends MVPBaseActivity<SelectDevicePresenter>
 
         mAdapter.notifyDataSetChanged();
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            exit();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
+    private void exit(){
+        String deviceInfo = (String) SPUtils.get(mContext, UserManager.getInstance().getDeviceInfoKey(),"");
+        if(TextUtils.isEmpty(deviceInfo)){
+            CustomConfirmDialog customConfirmDialog = CustomConfirmDialog.newInstance("是否确认退出？");
+            customConfirmDialog.setOnConfirmClickListener(new CustomConfirmDialog.OnConfirmClickListener() {
+                @Override
+                public void onCallBack() {
+                    finish();
+                }
+            });
+            customConfirmDialog.show(getSupportFragmentManager(),"exitDialog");
+            return;
+        }
+        finish();
+    }
+
 }

@@ -1,6 +1,6 @@
 package com.example.lyfuelgas.bean;
 
-import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps.model.LatLng;
 import com.example.lyfuelgas.common.bean.BaseObject;
 import com.example.lyfuelgas.common.utils.LatLngUtils;
 

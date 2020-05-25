@@ -42,28 +42,39 @@
             android:layout_alignParentRight="true"
             android:src="@drawable/avge_note" />
     </RelativeLayout>
-
-    <com.youth.banner.Banner
-        android:id="@+id/discount_banner"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y21"
-        app:indicator_drawable_selected="@drawable/ly_banner_select"
-        app:indicator_height="8dp"
-        app:indicator_width="8dp"
-        android:layout_marginTop="@dimen/x2"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="——优惠活动——"
-        android:textColor="@color/discount_text"
-        android:textSize="@dimen/sp_20"
-        />
-   <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:id="@+id/discount_rv"
-       >
-   </androidx.recyclerview.widget.RecyclerView>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <com.youth.banner.Banner
+                android:id="@+id/discount_banner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y21"
+                app:indicator_drawable_selected="@drawable/ly_banner_select"
+                app:indicator_height="8dp"
+                app:indicator_width="8dp"
+                android:layout_marginTop="@dimen/x2"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="——优惠活动——"
+                android:textColor="@color/discount_text"
+                android:textSize="@dimen/sp_20"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/discount_rv"
+                >
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+        <include layout="@layout/layout_empty"/>
+    </RelativeLayout>
+
 </LinearLayout>

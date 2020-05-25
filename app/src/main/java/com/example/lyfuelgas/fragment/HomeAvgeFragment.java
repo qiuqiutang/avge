@@ -28,6 +28,7 @@ import com.example.lyfuelgas.common.utils.GsonUtils;
 import com.example.lyfuelgas.common.utils.SPUtils;
 import com.example.lyfuelgas.contact.HomeAvgeContact;
 import com.example.lyfuelgas.presenter.HomeAvgePresenter;
+import com.example.lyfuelgas.view.CustomAlertDialog;
 
 import java.util.List;
 
@@ -92,6 +93,7 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
     //private MeasureObject measureObject;
     private DeviceObject deviceObject;
 
+    CustomAlertDialog alertDialog;
 
     @Override
     protected int getContentLayout() {
@@ -104,6 +106,7 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
         initCircleViewMsg(circle, homeFmIsGasIv);
         mPresenter.getCustomer();
         setData();
+        alertDialog = CustomAlertDialog.newInstance("敬请期待");
     }
 
     @Override
@@ -368,7 +371,8 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
             case R.id.home_fm_time_remaining_tv:
                 break;
             case R.id.avge_auto_fl:
-                launchActivity(AvgeAutoActivity.class);
+                alertDialog.show(getFragmentManager(),"pending");
+                //launchActivity(AvgeAutoActivity.class);
                 break;
             case R.id.avge_auto_iv:
                 Bundle bundle = new Bundle();
@@ -377,13 +381,16 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
                 launchActivity(AvgeFillActivity.class,false,bundle);
                 break;
             case R.id.avge_diagnose_iv:
-                startActivity(new Intent(getContext(), AvgeDiagnoseActivity.class));
+                alertDialog.show(getFragmentManager(),"pending");
+                //startActivity(new Intent(getContext(), AvgeDiagnoseActivity.class));
                 break;
             case R.id.avge_msg_iv:
-                startActivity(new Intent(getContext(), AvgeMassageActivity.class));
+                alertDialog.show(getFragmentManager(),"pending");
+                //startActivity(new Intent(getContext(), AvgeMassageActivity.class));
                 break;
             case R.id.fm_avge_news:
-                startActivity(new Intent(getContext(), NewsActivity.class));
+                alertDialog.show(getFragmentManager(),"pending");
+                //startActivity(new Intent(getContext(), NewsActivity.class));
                 break;
             case R.id.ivSwitch:
                 launchActivityForResult(SelectDeviceActivity.class,null, 110);

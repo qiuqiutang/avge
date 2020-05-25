@@ -2,7 +2,8 @@ package com.example.lyfuelgas.common.utils;
 
 import android.text.TextUtils;
 
-import com.amap.api.maps2d.model.LatLng;
+import com.amap.api.maps.model.LatLng;
+
 
 public class LatLngUtils {
     /**

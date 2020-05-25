@@ -131,7 +131,7 @@ dependencies {
     api 'com.squareup.okhttp3:logging-interceptor:3.4.1'
 
     //高德
-    implementation 'com.amap.api:map2d:6.0.0'
+    implementation 'com.amap.api:3dmap:7.4.0'
     implementation 'com.amap.api:location:4.9.0'
     implementation 'com.amap.api:search:7.3.0'
 

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.lyfuelgas.R;
 import com.example.lyfuelgas.adapter.BaseRecyclerAdapter;
@@ -31,6 +33,10 @@ public class HomeDiscount extends Fragment {
     Banner discountBanner;*/
     @BindView(R.id.discount_rv)
     RecyclerView discountRv;
+    @BindView(R.id.iv_error)
+    ImageView iv_error;
+    @BindView(R.id.tv_error)
+    TextView tv_error;
 
 
     private BaseRecyclerAdapter<test> discountsrecyclyer;
@@ -56,7 +62,8 @@ public class HomeDiscount extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        tv_error.setText("敬请期待");
+        iv_error.setImageResource(R.drawable.img_jingqingqidai);
         discount_banner=view.findViewById(R.id.discount_banner);
         test t=new test();
         t.setText("sdjlfjsdlfjsdl");

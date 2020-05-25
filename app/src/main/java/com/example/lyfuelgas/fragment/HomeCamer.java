@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.lyfuelgas.R;
 
@@ -19,6 +20,10 @@ public class HomeCamer extends Fragment {
     private static final String TAG = "HomeCamer";
     @BindView(R.id.home_refresh)
     ImageView homeRefresh;
+    @BindView(R.id.iv_error)
+    ImageView iv_error;
+    @BindView(R.id.tv_error)
+    TextView tv_error;
 
     private View view;
 
@@ -40,6 +45,9 @@ public class HomeCamer extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        tv_error.setText("敬请期待");
+        tv_error.setTextColor(getResources().getColor(R.color.color_main));
+        iv_error.setImageResource(R.drawable.jingqingqidai);
 
     }
 

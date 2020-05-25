@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:textSize="@dimen/text_title_primary"
+        android:textColor="@color/color_333333"
+        android:text="敬请期待"/>
+    <View style="@style/separation_line_style"/>
+    <TextView android:id="@+id/tvConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/color_main"
+        android:padding="16dp"
+        android:gravity="center"
+        android:textSize="@dimen/text_title_primary"
+        android:text="确定"/>
+</LinearLayout>
