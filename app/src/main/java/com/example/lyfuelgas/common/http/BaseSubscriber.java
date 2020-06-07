@@ -108,6 +108,7 @@ public class BaseSubscriber<T> extends Subscriber<T> {
         if (mContext == null) {
             return;
         }
+        TokenExpiredDialog.getInstance().show();
         /*GetTokenRequest request = new GetTokenRequest();
         request.lang = TelephonyUtils.getCurrentLocaleString(MyApplication.getInstance());
         request.deviceId = TelephonyUtils.getDeviceId(MyApplication.getInstance());

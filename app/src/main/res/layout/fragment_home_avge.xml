@@ -59,12 +59,12 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <ImageView
+            <ImageView android:id="@+id/ivDevicePic"
                 android:layout_width="100dp"
-                android:layout_height="180dp"
+                android:layout_height="162dp"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
-                android:src="@mipmap/ic_launcher" />
+                android:background="@drawable/bg_image"/>
 
             <TextView android:id="@+id/tvDeviceType"
                 android:layout_width="wrap_content"
@@ -104,38 +104,44 @@
                 android:layout_marginTop="@dimen/dp_10"
                 android:text="燃料监测"
                 android:textColor="@color/home_head_text" />
-
-            <FrameLayout
-                android:layout_width="@dimen/x10"
-                android:layout_height="@dimen/y7"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/dp_15">
-
-                <ImageView
-                    android:id="@+id/home_fm_is_gas1_iv"
+            <LinearLayout android:id="@+id/lvToxicGas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <FrameLayout
                     android:layout_width="@dimen/x10"
                     android:layout_height="@dimen/y7"
-                    android:src="@mipmap/circle35" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <ImageView
+                        android:id="@+id/home_fm_is_gas1_iv"
+                        android:layout_width="@dimen/x10"
+                        android:layout_height="@dimen/y7"
+                        android:src="@mipmap/circle35" />
+
+                    <TextView
+                        android:id="@+id/home_fm_is_gas1_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="2dp"
+                        android:text="45%"
+                        android:textColor="@color/home_head_text"
+                        android:textSize="@dimen/text_secondary" />
+                </FrameLayout>
 
                 <TextView
-                    android:id="@+id/home_fm_is_gas1_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="2dp"
-                    android:text="45%"
-                    android:textColor="@color/home_head_text"
-                    android:textSize="@dimen/text_secondary" />
-            </FrameLayout>
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="有毒气体监测"
+                    android:textColor="@color/home_head_text" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/dp_10"
-                android:text="有毒气体监测"
-                android:textColor="@color/home_head_text" />
         </LinearLayout>
 
         <LinearLayout
@@ -170,37 +176,43 @@
                 android:textColor="@color/home_head_text"
 
                 />
-
-
-            <FrameLayout
-                android:layout_width="@dimen/x10"
-                android:layout_height="@dimen/y7"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/dp_15">
-
-                <ImageView
-                    android:id="@+id/home_fm_is_gas_iv"
+            <LinearLayout android:id="@+id/lvCombustibleGas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+                <FrameLayout
                     android:layout_width="@dimen/x10"
                     android:layout_height="@dimen/y7"
-                    android:src="@mipmap/circle35" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dp_15">
+
+                    <ImageView
+                        android:id="@+id/home_fm_is_gas_iv"
+                        android:layout_width="@dimen/x10"
+                        android:layout_height="@dimen/y7"
+                        android:src="@mipmap/circle35" />
+
+                    <TextView
+                        android:id="@+id/home_fm_is_gas_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="45%"
+                        android:textColor="@color/home_head_text"
+                        android:textSize="@dimen/sp_13" />
+                </FrameLayout>
 
                 <TextView
-                    android:id="@+id/home_fm_is_gas_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="45%"
-                    android:textColor="@color/home_head_text"
-                    android:textSize="@dimen/sp_13" />
-            </FrameLayout>
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="可燃气体监测"
+                    android:textColor="@color/home_head_text" />
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/dp_10"
-                android:text="可燃气体监测"
-                android:textColor="@color/home_head_text" />
+
         </LinearLayout>
     </LinearLayout>
 

@@ -1,5 +1,6 @@
 package com.example.lyfuelgas.presenter;
 
+import com.example.lyfuelgas.app.CustomerManager;
 import com.example.lyfuelgas.bean.OrderObject;
 import com.example.lyfuelgas.bean.RequestObject;
 import com.example.lyfuelgas.bean.RequestSortObject;
@@ -43,8 +44,16 @@ public class OrderPresenter extends BasePresenter<OrderFragment> implements Orde
         requestTermObject.type = "and";
         requestTermObject.termType = "eq";
         requestTermObject.value = status;
+
+        /*RequestTermObject requestTermObject1 = new RequestTermObject();
+        requestTermObject1.column = "customerId";
+        requestTermObject1.type = "and";
+        requestTermObject1.termType = "eq";
+        requestTermObject1.value = CustomerManager.getInstance().getCustomerId();*/
+
         requestObject.terms = new ArrayList<RequestTermObject>();
         requestObject.terms.add(requestTermObject);
+        //requestObject.terms.add(requestTermObject1);
 
         requestObject.sorts = new ArrayList<RequestSortObject>();
         RequestSortObject requestSortObject = new RequestSortObject();

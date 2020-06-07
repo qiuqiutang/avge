@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -24,6 +25,7 @@ import com.example.lyfuelgas.bean.DeviceTypeObject;
 import com.example.lyfuelgas.bean.MeasureObject;
 import com.example.lyfuelgas.common.mvp.MVPBaseFragment;
 import com.example.lyfuelgas.common.utils.CallPhone;
+import com.example.lyfuelgas.common.utils.GlideUtils;
 import com.example.lyfuelgas.common.utils.GsonUtils;
 import com.example.lyfuelgas.common.utils.SPUtils;
 import com.example.lyfuelgas.contact.HomeAvgeContact;
@@ -78,6 +80,13 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
     ImageView avge_touch;
     @BindView(R.id.tvDeviceType)
     TextView tvDeviceType;
+    @BindView(R.id.ivDevicePic)
+    ImageView ivDevicePic;
+    @BindView(R.id.lvCombustibleGas)
+    ViewGroup lvCombustibleGas;
+    @BindView(R.id.lvToxicGas)
+    ViewGroup lvToxicGas;
+
 
 
     private View view;
@@ -130,8 +139,9 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
             //mPresenter.getSupplier(deviceObject.supplierId);
             deviceTypeObject = DeviceTypeManager.getInstance().getDeviceType(deviceObject.equipmentTypeId);
             if (null != deviceTypeObject) {
-                homeFmCapacityTv.setText(deviceTypeObject.capacity + "L");
                 tvDeviceType.setText(deviceTypeObject.name);
+                lvCombustibleGas.setVisibility(deviceTypeObject.isShowToxicGas() ? View.VISIBLE : View.GONE);
+                lvToxicGas.setVisibility(deviceTypeObject.isShowToxicGas() ? View.VISIBLE : View.GONE);
             }
         }
     }
@@ -430,8 +440,11 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
             deviceObject = data;
             homeFmTemperatureTv.setText(String.format("%.1f ℃", deviceObject.temperature));
             String fuelStr = deviceObject.height <= 0 ? "0" : String.valueOf((int)(((deviceObject.liquid*10) /(deviceObject.height*10) )*100));
-            homeFmFuelTv.setText(fuelStr+"%");
-            initLineViewMsg(fuelStr, homeFmFuelIv);
+            homeFmFuelTv.setText(deviceObject.remain+"%");
+            initLineViewMsg(String.valueOf((int)(deviceObject.remain)), homeFmFuelIv);
+            GlideUtils.loadImageView(mContext,deviceObject.picUrl,ivDevicePic);
+
+            homeFmCapacityTv.setText(String.format("%.2fL",deviceObject.capacity/100f));
         }else {
             homeFmTemperatureTv.setText("--℃");
             homeFmFuelTv.setText("--");

@@ -86,6 +86,7 @@
         <activity android:name=".activity.DeliverHomeActivity"/>
         <activity android:name=".activity.FillActivity"/>
         <activity android:name=".activity.DriveRouteActivity"/>
+        <activity android:name=".activity.GuideListActivity"/>
     </application>
 
 </manifest>

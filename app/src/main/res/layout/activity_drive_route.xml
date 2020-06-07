@@ -16,5 +16,13 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ico_map_back"
         android:padding="30dp"/>
+    <ImageView android:id="@+id/ivGuide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:padding="16dp"
+        android:layout_margin="10dp"
+        android:src="@drawable/ico_guide"/>
 
 </RelativeLayout>

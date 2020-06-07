@@ -33,9 +33,11 @@ public class DeviceObject extends BaseObject {
     public int area;
     public int capacity;
     public int height;
+    public float remain;
     public float liquid;
     public float temperature;
     public BigDecimal volume;
+    public String picUrl;
 
     /**
      * "address": "string",

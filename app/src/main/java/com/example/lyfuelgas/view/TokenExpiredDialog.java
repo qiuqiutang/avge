@@ -37,7 +37,7 @@ public class TokenExpiredDialog {
                 public void onCallBack() {
                     FragmentActivity activity = (FragmentActivity) ExitApp.getInstance().getLastActivity();
                     if(null != activity) {
-                        /*Intent intent = new Intent(activity, LoginActivity.class);
+                        Intent intent = new Intent(activity, LoginActivity.class);
                         activity.startActivity(intent);
                         ArrayList<Activity> mActivityList = ExitApp.getInstance().getActivityList();
                         for (Activity activity1 : mActivityList) {
@@ -45,7 +45,7 @@ public class TokenExpiredDialog {
                                 continue;
                             }
                             activity.finish();
-                        }*/
+                        }
                     }
 
                 }

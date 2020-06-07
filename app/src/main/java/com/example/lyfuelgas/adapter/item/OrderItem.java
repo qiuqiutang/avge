@@ -53,7 +53,7 @@ public class OrderItem extends AbstractItem<OrderObject> {
             sbOrderInfo.append("\n");
         }
         if(!TextUtils.isEmpty(o.bill)){
-            sbOrderInfo.append(String.format("下单金额：%sL",o.bill));
+            sbOrderInfo.append(String.format("下单金额：%s元",o.bill));
             sbOrderInfo.append("\n");
         }
         sbOrderInfo.append(String.format("下单时间：%s",DateUtils.formatDateTotal(o.createTime)));
@@ -66,7 +66,7 @@ public class OrderItem extends AbstractItem<OrderObject> {
             sbFillInfo.append("\n");
         }
         if(!TextUtils.isEmpty(o.fillBill)){
-            sbFillInfo.append(String.format("加注金额：%sL",o.fillBill));
+            sbFillInfo.append(String.format("加注金额：%s元",o.fillBill));
             sbFillInfo.append("\n");
         }
         sbFillInfo.append(String.format("加注时间：%s",DateUtils.formatDateTotal(o.fillTime)));

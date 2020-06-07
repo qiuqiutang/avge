@@ -34,14 +34,14 @@ public class AvgeFIllPresenter extends BasePresenter<AvgeFillActivity> implement
         Map<String, Object> request = new HashMap<>();
         request.put("amount",amount);
         request.put("bill",bill);
-        request.put("address", TextUtils.isEmpty(deviceObject.address) ? "" : deviceObject.address);
+        //request.put("address", TextUtils.isEmpty(deviceObject.address) ? "" : deviceObject.address);
         request.put("supplierId",deviceObject.supplierId);
-        request.put("supplierMobile", deviceObject.supplierMobile);
+        //request.put("supplierMobile", deviceObject.supplierMobile);
         request.put("equipmentId",deviceObject.id);
         request.put("customerId", deviceObject.customerId);
-        request.put("contact", deviceObject.customerContact);
-        request.put("customerMobile", deviceObject.customerMobile);
-        request.put("location",deviceObject.location);
+        //request.put("contact", deviceObject.customerContact);
+        //request.put("customerMobile", deviceObject.customerMobile);
+        //request.put("location",deviceObject.location);
         request.put("status",0);
         ((OrderModel)(mModels.get("order"))).addOrder(request,new BaseSubscriber<BaseResponse>(getIView()){
             @Override

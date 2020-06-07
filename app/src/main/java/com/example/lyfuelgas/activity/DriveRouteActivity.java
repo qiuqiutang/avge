@@ -1,5 +1,7 @@
 package com.example.lyfuelgas.activity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -21,9 +23,14 @@ import com.example.lyfuelgas.R;
 import com.example.lyfuelgas.bean.OrderObject;
 import com.example.lyfuelgas.common.mvp.BasePresenter;
 import com.example.lyfuelgas.common.mvp.MVPBaseActivity;
+import com.example.lyfuelgas.common.utils.MapUtils;
 import com.example.lyfuelgas.common.utils.ProgressDialogUtils;
+import com.example.lyfuelgas.view.CustomConfirmDialog;
+import com.example.lyfuelgas.view.choose.PopChooseDialog;
+import com.example.lyfuelgas.view.choose.SingleObject;
 import com.example.lyfuelgas.view.route.DrivingRouteOverLay;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -52,12 +59,16 @@ public class DriveRouteActivity extends MVPBaseActivity implements DistanceSearc
     private LatLonPoint mStartPoint,mEndPoint;
     private List<LatLonPoint> passPoint;
 
+    private List<SingleObject> chooseOptionList;
+    private PopChooseDialog popChooseDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mapView.onCreate(savedInstanceState);
         aMap = mapView.getMap();
+        aMap.getUiSettings().setZoomControlsEnabled(false);//设置右下角缩放按钮是否显示
         orderObjectList = (List<OrderObject>) getIntent().getSerializableExtra("list");
         double longtitude = getIntent().getDoubleExtra("longtitude",0);
         double latitude = getIntent().getDoubleExtra("latitude",0);
@@ -124,9 +135,81 @@ public class DriveRouteActivity extends MVPBaseActivity implements DistanceSearc
 
     }
 
-    @OnClick({R.id.ivBack})
+    @OnClick({R.id.ivBack,R.id.ivGuide})
     public void onClick(View v){
-        finish();
+        switch (v.getId()){
+            case R.id.ivBack:
+                finish();
+                break;
+            case R.id.ivGuide:
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("list", (Serializable) tempOrderList);
+                bundle.putDouble("start_lat", mStartPoint.getLatitude());
+                bundle.putDouble("start_long", mStartPoint.getLongitude());
+                launchActivity(GuideListActivity.class,false,bundle);
+                //showPopDialog();
+                break;
+        }
+    }
+
+
+    private void showPopDialog(){
+        if(null == chooseOptionList){
+            chooseOptionList = new ArrayList<>();
+
+        }
+        chooseOptionList.clear();
+        if(MapUtils.isGdMapInstalled()){
+            chooseOptionList.add(new SingleObject(1,"高德地图"));
+        }
+        if(MapUtils.isBaiduMapInstalled()){
+            chooseOptionList.add(new SingleObject(2,"百度地图"));
+        }
+        if(MapUtils.isTencentMapInstalled()){
+            chooseOptionList.add(new SingleObject(3,"腾讯地图"));
+        }
+        if(chooseOptionList.isEmpty()){
+            //没有安装地图软件
+            CustomConfirmDialog customConfirmDialog = CustomConfirmDialog.newInstance("暂时没有可用的地图，下载高德地图");
+            customConfirmDialog.setOnConfirmClickListener(new CustomConfirmDialog.OnConfirmClickListener() {
+                @Override
+                public void onCallBack() {
+                    Intent intent ;
+                    Uri uri = Uri.parse("market://details?id=com.autonavi.minimap");
+                    intent = new Intent(Intent.ACTION_VIEW, uri);
+                    startActivity(intent);
+                }
+            });
+            customConfirmDialog.show(getSupportFragmentManager(), "CustomConfirmDialog");
+            return;
+        }
+        if(null == popChooseDialog){
+            popChooseDialog = new PopChooseDialog(this);
+            popChooseDialog.setOnChangeResultListener(new PopChooseDialog.OnChangeResultListener() {
+                @Override
+                public void onChange(SingleObject singleObject) {
+                    OrderObject lastOrderObject = null;
+                    if(null != tempOrderList && !tempOrderList.isEmpty()){
+                        lastOrderObject = tempOrderList.get(tempOrderList.size()-1);
+                    }else {
+                        lastOrderObject = new OrderObject();
+                    }
+                    switch (singleObject.id){
+                        case 1:
+                            MapUtils.openGaoDeNavi(mContext,mStartPoint.getLatitude(),mStartPoint.getLongitude(),"我的位置",mEndPoint.getLatitude(),mEndPoint.getLongitude(),lastOrderObject.address);
+                            break;
+                        case 2:
+                            MapUtils.openBaiDuNavi(mContext,mStartPoint.getLatitude(),mStartPoint.getLongitude(),"我的位置",mEndPoint.getLatitude(),mEndPoint.getLongitude(),lastOrderObject.address);
+                            break;
+                        case 3:
+                            MapUtils.openTencentMap(mContext,mStartPoint.getLatitude(),mStartPoint.getLongitude(),"我的位置",mEndPoint.getLatitude(),mEndPoint.getLongitude(),lastOrderObject.address);
+                            break;
+                    }
+                }
+            });
+            popChooseDialog.setData(chooseOptionList);
+        }
+        popChooseDialog.show(mapView);
     }
 
     /**
@@ -184,7 +267,7 @@ public class DriveRouteActivity extends MVPBaseActivity implements DistanceSearc
                     LatLng latLng1 = orderObject.getLatLng();
                     stationPoints.add(new LatLonPoint(latLng1.latitude, latLng1.longitude));
                 }
-                if(orderObjectList.size() > 1) {
+                if(orderObjectList.size() >= 1) {
                     calculateDistance();
                 }else {
                     passPoint = new ArrayList<>();

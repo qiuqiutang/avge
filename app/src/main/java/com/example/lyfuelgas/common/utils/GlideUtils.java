@@ -35,6 +35,16 @@ public class GlideUtils {
         Glide.with(mContext).load(path).into(mImageView);
     }
 
+
+    //默认加载还默认图片
+    public static void loadImageView(Context mContext,int placeResId, String path, ImageView mImageView) {
+        RequestOptions options = new RequestOptions()
+                .placeholder(placeResId)
+                .error(placeResId)
+                .diskCacheStrategy(DiskCacheStrategy.ALL);;
+        Glide.with(mContext).load(path).apply(options).into(mImageView);
+    }
+
     //默认加载
     public static void loadImageView(Context mContext, int resId, ImageView mImageView) {
         RequestOptions options = new RequestOptions()

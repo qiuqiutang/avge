@@ -100,10 +100,10 @@ public class AvgeFillActivity extends MVPBaseActivity<AvgeFIllPresenter> impleme
             sbInfo.append(deviceObject.address);
             sbInfo.append("\n");
             sbInfo.append("总容量：");
-            sbInfo.append(deviceObject.capacity);
+            sbInfo.append(String.format("%.2f",deviceObject.capacity/100f));
             sbInfo.append("L\n");
             sbInfo.append("当前容量：");
-            sbInfo.append(deviceObject.liquid*deviceObject.area);
+            sbInfo.append(String.format("%.2f",deviceObject.remain*deviceObject.capacity/10000));
             sbInfo.append("L\n");
             sbInfo.append("供应商：");
             sbInfo.append(deviceObject.supplierContact);
@@ -166,10 +166,10 @@ public class AvgeFillActivity extends MVPBaseActivity<AvgeFIllPresenter> impleme
             sbInfo.append(deviceObject.imei);
             sbInfo.append("\n");
             sbInfo.append("总容量：");
-            sbInfo.append(deviceObject.capacity);
+            sbInfo.append(String.format("%.2f",deviceObject.capacity/100f));
             sbInfo.append("L\n");
             sbInfo.append("当前容量：");
-            sbInfo.append(deviceObject.liquid*deviceObject.area);
+            sbInfo.append(String.format("%.2f",deviceObject.remain*deviceObject.capacity/10000));
             sbInfo.append("L\n");
             sbInfo.append("供应商：");
             sbInfo.append(deviceObject.supplierContact);

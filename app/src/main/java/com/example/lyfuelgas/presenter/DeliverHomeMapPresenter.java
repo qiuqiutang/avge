@@ -43,15 +43,15 @@ public class DeliverHomeMapPresenter extends BasePresenter<DeliverHomeMapFragmen
         requestTermObject.termType = "eq";
         requestTermObject.value = 0;
 
-        RequestTermObject requestTermObject2 = new RequestTermObject();
+      /*  RequestTermObject requestTermObject2 = new RequestTermObject();
         requestTermObject2.column = "personId";
         requestTermObject2.type = "and";
         requestTermObject2.termType = "eq";
-        requestTermObject2.value = UserManager.getInstance().getPersonId();
+        requestTermObject2.value = UserManager.getInstance().getPersonId();*/
 
         requestObject.terms = new ArrayList<RequestTermObject>();
         requestObject.terms.add(requestTermObject);
-        requestObject.terms.add(requestTermObject2);
+        //requestObject.terms.add(requestTermObject2);
 
         requestObject.sorts = new ArrayList<RequestSortObject>();
         RequestSortObject requestSortObject = new RequestSortObject();

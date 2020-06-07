@@ -113,7 +113,7 @@ public interface ApiService {
      * 获取设备列表
      * @return
      */
-    @GET("/equipment/no-paging")
+    @GET("/me/equipment")
     Observable<BaseResponse<ArrayList<DeviceObject>>> getDeviceList();
 
     /**
@@ -150,7 +150,7 @@ public interface ApiService {
      * @param request
      * @return
      */
-    @GET("/order")
+    @GET("/me/order")
     Observable<BaseResponse<ResponsePageObject<OrderObject>>> getOrderList(@QueryMap Map<String, Object> request);
 
     /**
@@ -158,7 +158,7 @@ public interface ApiService {
      * @param request
      * @return
      */
-    @GET("/order/no-paging")
+    @GET("/me/order/no-paging")
     Observable<BaseResponse<ArrayList<OrderObject>>> getOrderListNoPage(@QueryMap Map<String, Object> request);
 
     /**
