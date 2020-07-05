@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="AVLoadingIndicatorView"><attr name="indicator">
+    <declare-styleable name="AVLoadingIndicatorView">
+        <attr name="indicator">
             <flag name="BallPulse" value="0"/>
             <flag name="BallGridPulse" value="1"/>
             <flag name="BallClipRotate" value="2"/>
@@ -29,7 +30,9 @@
             <flag name="Pacman" value="25"/>
             <flag name="BallGridBeat" value="26"/>
             <flag name="SemiCircleSpin" value="27"/>
-        </attr><attr format="color" name="indicator_color"/></declare-styleable>
+        </attr>
+        <attr format="color" name="indicator_color"/>
+    </declare-styleable>
     <dimen name="textandiconmargin">10dp</dimen>
     <string name="listview_header_hint_normal">pull to refresh</string>
     <string name="listview_header_hint_release">release to start refresh</string>

@@ -33,6 +33,7 @@ public class OrderObject extends BaseObject implements Comparable<OrderObject>{
     public String customerMobile;
     public String customerName;
     public String equipmentId;
+    public String equipAddress;
     public long fillTime;
     public String fillAmount;
     public String fillBill;

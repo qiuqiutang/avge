@@ -124,13 +124,13 @@ public class GuideListActivity extends MVPBaseActivity {
                     LatLonPoint mEndPoint = new LatLonPoint(endStation.getLatLng().latitude,endStation.getLatLng().longitude);
                     switch (singleObject.id){
                         case 1:
-                            MapUtils.openGaoDeNavi(mContext,mStartPoint.getLatitude(),mStartPoint.getLongitude(),"我的位置",mEndPoint.getLatitude(),mEndPoint.getLongitude(),endStation.address);
+                            MapUtils.openGaoDeNavi(mContext,mStartPoint.getLatitude(),mStartPoint.getLongitude(),"我的位置",mEndPoint.getLatitude(),mEndPoint.getLongitude(),endStation.equipAddress);
                             break;
                         case 2:
-                            MapUtils.openBaiDuNavi(mContext,mStartPoint.getLatitude(),mStartPoint.getLongitude(),"我的位置",mEndPoint.getLatitude(),mEndPoint.getLongitude(),endStation.address);
+                            MapUtils.openBaiDuNavi(mContext,mStartPoint.getLatitude(),mStartPoint.getLongitude(),"我的位置",mEndPoint.getLatitude(),mEndPoint.getLongitude(),endStation.equipAddress);
                             break;
                         case 3:
-                            MapUtils.openTencentMap(mContext,mStartPoint.getLatitude(),mStartPoint.getLongitude(),"我的位置",mEndPoint.getLatitude(),mEndPoint.getLongitude(),endStation.address);
+                            MapUtils.openTencentMap(mContext,mStartPoint.getLatitude(),mStartPoint.getLongitude(),"我的位置",mEndPoint.getLatitude(),mEndPoint.getLongitude(),endStation.equipAddress);
                             break;
                     }
                 }

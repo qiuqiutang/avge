@@ -2,6 +2,7 @@ package com.example.lyfuelgas.model;
 
 import android.content.Context;
 
+import com.example.lyfuelgas.bean.DeviceObject;
 import com.example.lyfuelgas.bean.OrderObject;
 import com.example.lyfuelgas.bean.RequestObject;
 import com.example.lyfuelgas.common.http.BaseResponse;
@@ -64,4 +65,7 @@ public class OrderModel extends IModel {
                 .subscribe(subscriber);
         putSubscription(subscribe);
     }
+
+
+
 }

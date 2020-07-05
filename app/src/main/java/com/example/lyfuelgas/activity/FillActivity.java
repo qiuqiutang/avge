@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.lyfuelgas.R;
+import com.example.lyfuelgas.bean.DeviceObject;
 import com.example.lyfuelgas.bean.OrderObject;
 import com.example.lyfuelgas.common.mvp.MVPBaseActivity;
 import com.example.lyfuelgas.common.utils.LyToast;
@@ -17,8 +18,11 @@ import com.example.lyfuelgas.common.utils.eventbus.EventType;
 import com.example.lyfuelgas.common.utils.eventbus.MyEvent;
 import com.example.lyfuelgas.contact.FillContact;
 import com.example.lyfuelgas.presenter.FillPresenter;
+import com.example.lyfuelgas.view.ClearEditText;
 import com.example.lyfuelgas.view.MyInputFilter;
 import com.example.lyfuelgas.view.SimpleToolbar;
+
+import java.math.BigDecimal;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,15 +35,16 @@ public class FillActivity extends MVPBaseActivity<FillPresenter> implements Text
     @BindView(R.id.etEmei)
     EditText etEmei;
     @BindView(R.id.etCapacity)
-    EditText etCapacity;
+    ClearEditText etCapacity;
     @BindView(R.id.etPrice)
-    EditText etPrice;
+    ClearEditText etPrice;
     @BindView(R.id.etRemark)
     EditText etRemark;
     @BindView(R.id.btnSubmit)
     Button btnSubmit;
 
     OrderObject orderObject;
+    DeviceObject deviceObject;
 
     @Override
     protected FillPresenter loadPresenter() {
@@ -59,13 +64,14 @@ public class FillActivity extends MVPBaseActivity<FillPresenter> implements Text
         toolbar.setMainTitle("燃料加注");
         etPrice.setFilters(new InputFilter[]{inputFilter});
         etCapacity.setFilters(new InputFilter[]{inputFilter});
+        mPresenter.getDeviceDetail(orderObject.equipmentId);
     }
 
     @Override
     protected void initEvent() {
         etEmei.addTextChangedListener(this);
-        etCapacity.addTextChangedListener(this);
-        etPrice.addTextChangedListener(this);
+        etCapacity.addTextChangedListener(capWatcher);
+        etPrice.addTextChangedListener(billWatcher);
         toolbar.setLeftTitleClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +135,76 @@ public class FillActivity extends MVPBaseActivity<FillPresenter> implements Text
         }
     }
 
+    TextWatcher capWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String cap = etCapacity.getText().toString().trim();
+            BigDecimal capBig = null;
+            if(TextUtils.isEmpty(cap)) {
+                etPrice.setText("");
+                etPrice.setEnabled(true);
+                etPrice.addTextChangedListener(billWatcher);
+            }else if(null != deviceObject){
+                etPrice.removeTextChangedListener(billWatcher);
+                capBig = new BigDecimal(cap);
+                BigDecimal money = capBig.multiply(deviceObject.getPrice()).setScale(2, BigDecimal.ROUND_HALF_UP);
+
+                etPrice.setEnabled(false);
+                etPrice.setText(money.toString());
+                etPrice.setClearIconVisible(false);
+            }
+            btnSubmit.setEnabled(!TextUtils.isEmpty(etEmei.getText().toString().trim()) && !TextUtils.isEmpty(etCapacity.getText().toString().trim()) && !TextUtils.isEmpty(etPrice.getText().toString().trim()));
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
+    TextWatcher billWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String bill = etPrice.getText().toString().trim();
+            BigDecimal billBig = null;
+            if(TextUtils.isEmpty(bill)) {
+                etCapacity.setText("");
+                etCapacity.setEnabled(true);
+                etCapacity.addTextChangedListener(capWatcher);
+            }else if(null != deviceObject){
+                etCapacity.removeTextChangedListener(capWatcher);
+                if(deviceObject.getPrice().compareTo(new BigDecimal(0)) == 0){
+                    etCapacity.setEnabled(false);
+                    etCapacity.setText("0.00");
+                    etCapacity.setClearIconVisible(false);
+                    return;
+                }
+                billBig = new BigDecimal(bill);
+                BigDecimal cap = billBig.divide(deviceObject.getPrice(),2, BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
+
+                etCapacity.setEnabled(false);
+                etCapacity.setText(cap.toString());
+                etCapacity.setClearIconVisible(false);
+            }
+            btnSubmit.setEnabled(!TextUtils.isEmpty(etEmei.getText().toString().trim()) && !TextUtils.isEmpty(etCapacity.getText().toString().trim()) && !TextUtils.isEmpty(etPrice.getText().toString().trim()));
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
 
     @Override
     public void onAddFillSuccess() {
@@ -136,5 +212,12 @@ public class FillActivity extends MVPBaseActivity<FillPresenter> implements Text
         EventBusUtils.post(new MyEvent(EventType.REFRESH_ORDER));
         setResult(RESULT_OK);
         finish();
+    }
+
+    @Override
+    public void onGetDeviceDetailSuccess(DeviceObject data) {
+        if(null != data){
+            this.deviceObject = data;
+        }
     }
 }

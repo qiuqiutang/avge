@@ -46,3 +46,23 @@
 #导航
 -keep class com.amap.api.navi.**{*;}
 -keep class com.autonavi.**{*;}
+
+
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okhttp3.**
+
+-keep class okio.** { *; }
+-keep interface okio.** { *; }
+
+# Retrofit
+-dontnote retrofit2.Platform
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+-dontwarn retrofit2.Platform$Java8
+-keepattributes Signature
+-keepattributes Exceptions
+
+# okhttp
+-dontwarn okio.**
+
+

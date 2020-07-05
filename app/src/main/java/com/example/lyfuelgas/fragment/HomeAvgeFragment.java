@@ -440,8 +440,8 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
             deviceObject = data;
             homeFmTemperatureTv.setText(String.format("%.1f ℃", deviceObject.temperature));
             String fuelStr = deviceObject.height <= 0 ? "0" : String.valueOf((int)(((deviceObject.liquid*10) /(deviceObject.height*10) )*100));
-            homeFmFuelTv.setText(deviceObject.remain+"%");
-            initLineViewMsg(String.valueOf((int)(deviceObject.remain)), homeFmFuelIv);
+            homeFmFuelTv.setText(deviceObject.remainPercent+"%");
+            initLineViewMsg(String.valueOf((int)(deviceObject.remainPercent)), homeFmFuelIv);
             GlideUtils.loadImageView(mContext,deviceObject.picUrl,ivDevicePic);
 
             homeFmCapacityTv.setText(String.format("%.2fL",deviceObject.capacity/100f));

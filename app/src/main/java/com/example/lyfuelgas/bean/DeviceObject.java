@@ -1,5 +1,7 @@
 package com.example.lyfuelgas.bean;
 
+import android.text.TextUtils;
+
 import com.example.lyfuelgas.adapter.item.DeviceItem;
 import com.example.lyfuelgas.common.bean.BaseObject;
 import com.example.lyfuelgas.view.treerecycleview.annotation.TreeItemClass;
@@ -30,10 +32,12 @@ public class DeviceObject extends BaseObject {
     public String supplierId;
     public String supplierContact;
     public String supplierMobile;
+    public String price;
     public int area;
     public int capacity;
     public int height;
     public float remain;
+    public float remainPercent;
     public float liquid;
     public float temperature;
     public BigDecimal volume;
@@ -67,4 +71,11 @@ public class DeviceObject extends BaseObject {
      *     "temperature": 0,
      *     "volume": 0
      */
+
+    public BigDecimal getPrice(){
+        if(TextUtils.isEmpty(price)) {
+            return new BigDecimal(0);
+        }
+        return new BigDecimal(price);
+    }
 }

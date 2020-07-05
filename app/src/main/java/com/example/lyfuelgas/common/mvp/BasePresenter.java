@@ -17,7 +17,7 @@ public abstract class BasePresenter<V extends IView> implements IPresenter {
     private WeakReference mViewRef;
     protected V mView;
 
-    public abstract HashMap<String, IModel> getiModelMap();
+
 
     @Override
     public void attachView(IView iView) {
@@ -52,6 +52,7 @@ public abstract class BasePresenter<V extends IView> implements IPresenter {
         return null;
     }
 
+    public abstract HashMap<String, IModel> getiModelMap();
     /**
      * @param models
      * @return

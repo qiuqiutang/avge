@@ -27,7 +27,7 @@ public class RouteItem extends AbstractItem<OrderObject> {
         if(null != orderObject){
             tvNum.setText(String.format("%d.",(index+1)));
             tvName.setText(orderObject.customerName);
-            tvAddress.setText(orderObject.address);
+            tvAddress.setText(orderObject.equipAddress);
         }
     }
 }

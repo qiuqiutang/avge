@@ -42,7 +42,7 @@ public class OrderItem extends AbstractItem<OrderObject> {
 
     @Override
     public void setData(OrderObject o, int index) {
-        tvAddress.setText(o.address);
+        tvAddress.setText(o.equipAddress);
         tvAmount.setText(o.bill);
         tvLiquid.setText(o.amount);
         tvName.setText(o.contact);

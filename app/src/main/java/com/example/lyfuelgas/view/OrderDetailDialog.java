@@ -110,7 +110,7 @@ public class OrderDetailDialog {
     }
 
     private void refreshView(){
-        tvAddress.setText(orderObject.address);
+        tvAddress.setText(orderObject.equipAddress);
         tvAmount.setText(orderObject.bill);
         tvLiquid.setText(orderObject.amount);
         tvName.setText(orderObject.contact);

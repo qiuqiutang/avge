@@ -1,6 +1,9 @@
 package com.example.lyfuelgas.activity;
 
 import android.graphics.drawable.BitmapDrawable;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -32,7 +35,9 @@ import com.example.lyfuelgas.common.utils.eventbus.EventType;
 import com.example.lyfuelgas.common.utils.eventbus.MyEvent;
 import com.example.lyfuelgas.contact.AvgeFillContact;
 import com.example.lyfuelgas.presenter.AvgeFIllPresenter;
+import com.example.lyfuelgas.view.ClearEditText;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +59,8 @@ public class AvgeFillActivity extends MVPBaseActivity<AvgeFIllPresenter> impleme
     @BindView(R.id.tvAddress)
     TextView tvAddress;
 
-    EditText etCapacity;
-    EditText etBill;
+    ClearEditText etCapacity;
+    ClearEditText etBill;
 
 
     private PopupWindow buypopupWindow;
@@ -68,6 +73,9 @@ public class AvgeFillActivity extends MVPBaseActivity<AvgeFIllPresenter> impleme
     //DeviceTypeObject deviceTypeObject;
     //MeasureObject measureObject;
     SupplierObject supplierObject;
+
+    //capatity:0,bill:1
+    int inputStatus = -1;
     @Override
     protected AvgeFIllPresenter loadPresenter() {
         return new AvgeFIllPresenter();
@@ -159,7 +167,9 @@ public class AvgeFillActivity extends MVPBaseActivity<AvgeFIllPresenter> impleme
         tvAddress.setText(deviceObject.address);
         TextView tvDeviceInfo = addpackageview.findViewById(R.id.tvDeviceInfo);
         etCapacity = addpackageview.findViewById(R.id.etCapacity);
+        etCapacity.addTextChangedListener(capWatcher);
         etBill = addpackageview.findViewById(R.id.etBill);
+        etBill.addTextChangedListener(billWatcher);
         StringBuilder sbInfo = new StringBuilder();
         if(null != deviceObject){
             sbInfo.append("设备IMEI：");
@@ -215,6 +225,74 @@ public class AvgeFillActivity extends MVPBaseActivity<AvgeFIllPresenter> impleme
         });
 
     }
+
+    TextWatcher capWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String cap = etCapacity.getText().toString().trim();
+            BigDecimal capBig = null;
+            if(TextUtils.isEmpty(cap)) {
+                etBill.setText("");
+                etBill.setEnabled(true);
+                etBill.addTextChangedListener(billWatcher);
+            }else {
+                etBill.removeTextChangedListener(billWatcher);
+                capBig = new BigDecimal(cap);
+                BigDecimal money = capBig.multiply(deviceObject.getPrice()).setScale(2, BigDecimal.ROUND_HALF_UP);
+
+                etBill.setEnabled(false);
+                etBill.setText(money.toString());
+                etBill.setClearIconVisible(false);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
+    TextWatcher billWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String bill = etBill.getText().toString().trim();
+            BigDecimal billBig = null;
+            if(TextUtils.isEmpty(bill)) {
+                etCapacity.setText("");
+                etCapacity.setEnabled(true);
+                etCapacity.addTextChangedListener(capWatcher);
+            }else {
+                etCapacity.removeTextChangedListener(capWatcher);
+                if(deviceObject.getPrice().compareTo(new BigDecimal(0)) == 0){
+                    etCapacity.setEnabled(false);
+                    etCapacity.setText("0.00");
+                    etCapacity.setClearIconVisible(false);
+                    return;
+                }
+                billBig = new BigDecimal(bill);
+                BigDecimal cap = billBig.divide(deviceObject.getPrice(),2, BigDecimal.ROUND_HALF_UP).setScale(2, BigDecimal.ROUND_HALF_UP);
+
+                etCapacity.setEnabled(false);
+                etCapacity.setText(cap.toString());
+                etCapacity.setClearIconVisible(false);
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
 
     /**
