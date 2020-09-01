@@ -14,6 +14,13 @@
             android:text="11111"
             android:textColor="#E6E6E6"
             android:textSize="@dimen/text_navigation_head"/>
+
+        <ImageView android:id="@+id/ivClosed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/selector_notice_switch"/>
     </RelativeLayout>
     <View style="@style/separation_line_style"
         android:background="#244F87"/>

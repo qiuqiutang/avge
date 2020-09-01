@@ -116,6 +116,8 @@ public class OrderDetailDialog {
         tvName.setText(orderObject.contact);
         tvMobile.setText(orderObject.customerMobile);
         StringBuilder sbOrderInfo = new StringBuilder();
+        sbOrderInfo.append(String.format("IMEI：%s",orderObject.imei));
+        sbOrderInfo.append("\n");
         if(!TextUtils.isEmpty(orderObject.amount)){
             sbOrderInfo.append(String.format("下单容量：%sL",orderObject.amount));
             sbOrderInfo.append("\n");

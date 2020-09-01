@@ -50,8 +50,7 @@ public class SelectDevicePresenter extends BasePresenter<SelectDeviceActivity> i
                 super.onNext(arrayListResponse);
                 if(null != arrayListResponse && arrayListResponse.isSuccess()){
                     HashMap<String,ArrayList<DeviceObject>> arrayListHashMap = new HashMap<>();
-                    for (DeviceObject deviceObject:arrayListResponse.result
-                         ) {
+                    for (DeviceObject deviceObject:arrayListResponse.result) {
                         if(null != deviceObject){
                             if(!arrayListHashMap.containsKey(deviceObject.equipmentTypeId)){
                                 ArrayList<DeviceObject> deviceObjects = new ArrayList<>();
@@ -77,21 +76,6 @@ public class SelectDevicePresenter extends BasePresenter<SelectDeviceActivity> i
 
     @Override
     public void getDeviceTypeList() {
-        /*ArrayList<DeviceTypeObject> deviceTypeObjects = new ArrayList<>();
-        for (int i =0 ; i < 5 ; i++){
-            DeviceTypeObject deviceTypeObject = new DeviceTypeObject();
-            deviceTypeObject.id = "00000000"+i;
-            deviceTypeObject.name = "==========" + i;
-            ArrayList<DeviceObject> deviceObjects = new ArrayList<>();
-            for(int j = 0; j < 3; j++) {
-                DeviceObject deviceObject = new DeviceObject();
-                deviceObject.id = "00000000"+i+"00"+j;
-                deviceObjects.add(deviceObject);
-            }
-            deviceTypeObject.deviceList = deviceObjects;
-            deviceTypeObjects.add(deviceTypeObject);
-        }
-        getIView().onGetDeviceListSuccess(deviceTypeObjects);*/
         ((DeviceTypeModel)(mModels.get("deviceType"))).getList(new BaseSubscriber<BaseResponse<ArrayList<DeviceTypeObject>>>(getIView()){
             @Override
             public void onCompleted() {
@@ -118,6 +102,31 @@ public class SelectDevicePresenter extends BasePresenter<SelectDeviceActivity> i
                     }
                 }
 
+            }
+        });
+    }
+
+    @Override
+    public void setDeviceTest(String deviceId, int status) {
+        Map<String,Object> request = new HashMap<>();
+        request.put("testStatus",status);
+        ((DeviceModel)(mModels.get("device"))).setDeviceInfo(deviceId,request,new BaseSubscriber<BaseResponse>(getIView()){
+            @Override
+            public void onCompleted() {
+                super.onCompleted();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+            }
+
+            @Override
+            public void onNext(BaseResponse baseResponse) {
+                super.onNext(baseResponse);
+                if(baseResponse.isSuccess()){
+                    getDeviceList();
+                }
             }
         });
     }

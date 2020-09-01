@@ -4,6 +4,7 @@ package com.example.lyfuelgas.common.http;
 import com.example.lyfuelgas.bean.AuthenticationObject;
 import com.example.lyfuelgas.bean.CustomerObject;
 import com.example.lyfuelgas.bean.DeviceObject;
+import com.example.lyfuelgas.bean.DeviceStatObject;
 import com.example.lyfuelgas.bean.DeviceTypeObject;
 import com.example.lyfuelgas.bean.MeasureObject;
 import com.example.lyfuelgas.bean.OrderObject;
@@ -18,6 +19,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -91,7 +93,19 @@ public interface ApiService {
     @GET("/customer")
     Observable<BaseResponse<ResponsePageObject<CustomerObject>>> getCustomerList(@QueryMap Map<String,Object> request);
 
+    /**
+     * 获取营业状态
+     * @return
+     */
+    @GET("/me/customer/opStatus")
+    Observable<BaseResponse<Integer>> getCustomerCloseStatus();
 
+    /**
+     * 设置营业状态
+     * @return
+     */
+    @PUT("/me/customer/opStatus/{status}")
+    Observable<BaseResponse<Integer>> setCustomerCloseStatus(@Path("status") int status);
     /**
      * 获取供应商信息
      * @param id
@@ -123,6 +137,22 @@ public interface ApiService {
     @GET("/equipment/detail/{id}")
     Observable<BaseResponse<DeviceObject>> getDeviceDetail(@Path("id") String id);
 
+    /**
+     * 获取设备统计信息
+     * @param equipmentId
+     * @return
+     */
+    @GET("/equipment/{equipmentId}/stat")
+    Observable<BaseResponse<DeviceStatObject>> getDeviceStat(@Path("equipmentId") String equipmentId);
+
+    /**
+     * 修改设备信息
+     * @param id
+     * @param requst
+     * @return
+     */
+    @PATCH("/me/equipment/{id}")
+    Observable<BaseResponse> setDeviceInfo(@Path("id") String id, @Body Map<String, Object> requst);
 
     ////////////////////////////////设备监测数据/////////////////////////////////////
 

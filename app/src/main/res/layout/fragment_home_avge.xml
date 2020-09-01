@@ -89,13 +89,15 @@
                 android:text="45%"
                 android:textColor="@color/home_head_text" />
 
-            <ImageView
-                android:id="@+id/home_fm_fuel_iv"
-                android:layout_width="@dimen/x10"
-                android:layout_height="@dimen/y7"
-                android:layout_gravity="center"
+            <com.example.lyfuelgas.view.VerticalProgressBar
+                android:id="@+id/pb_fuel"
+                android:layout_width="6dp"
+                android:layout_height="44dp"
                 android:layout_marginTop="@dimen/dp_10"
-                android:src="@mipmap/line55" />
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progressDrawable="@drawable/layer_list_progress_drawable"
+                android:layout_gravity="center"
+                android:max="100"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,7 +109,7 @@
             <LinearLayout android:id="@+id/lvToxicGas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="vertical">
                 <FrameLayout
                     android:layout_width="@dimen/x10"
@@ -179,7 +181,7 @@
             <LinearLayout android:id="@+id/lvCombustibleGas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:orientation="vertical">
                 <FrameLayout
                     android:layout_width="@dimen/x10"

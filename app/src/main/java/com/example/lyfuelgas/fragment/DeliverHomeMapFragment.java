@@ -28,11 +28,16 @@ import com.example.lyfuelgas.activity.FillActivity;
 import com.example.lyfuelgas.bean.OrderObject;
 import com.example.lyfuelgas.common.mvp.MVPBaseFragment;
 import com.example.lyfuelgas.common.utils.CallPhone;
+import com.example.lyfuelgas.common.utils.eventbus.EventBusUtils;
+import com.example.lyfuelgas.common.utils.eventbus.EventType;
+import com.example.lyfuelgas.common.utils.eventbus.MyEvent;
 import com.example.lyfuelgas.contact.DeliverHomeMapContact;
 import com.example.lyfuelgas.presenter.DeliverHomeMapPresenter;
 import com.example.lyfuelgas.view.CustomConfirmDialog;
 import com.example.lyfuelgas.view.MapPoiOverlay;
 import com.example.lyfuelgas.view.OrderDetailDialog;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -148,6 +153,7 @@ public class DeliverHomeMapFragment extends MVPBaseFragment<DeliverHomeMapPresen
     public void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
+        EventBusUtils.unregister(this);
     }
 
     @Override
@@ -374,4 +380,18 @@ public class DeliverHomeMapFragment extends MVPBaseFragment<DeliverHomeMapPresen
     public void setDeliverMapListener(OnDeliverMapListener onDeliverMapListener){
         this.onDeliverMapListener = onDeliverMapListener;
     }
+
+    @Subscribe
+    public void onEventRefreshOrder(MyEvent event) {
+        if (EventType.REFRESH_ORDER == event.enventType) {
+            mPresenter.getOrderList();
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBusUtils.register(this);
+    }
+
 }

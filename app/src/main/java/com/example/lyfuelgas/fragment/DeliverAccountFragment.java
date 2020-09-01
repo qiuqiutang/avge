@@ -1,6 +1,5 @@
 package com.example.lyfuelgas.fragment;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -8,14 +7,14 @@ import android.widget.TextView;
 import com.example.lyfuelgas.R;
 import com.example.lyfuelgas.activity.AccountChangePassActivity;
 import com.example.lyfuelgas.activity.LoginOptionActivity;
-import com.example.lyfuelgas.activity.SelectDeviceActivity;
-import com.example.lyfuelgas.activity.SettingClosedActivity;
 import com.example.lyfuelgas.app.UserManager;
 import com.example.lyfuelgas.bean.UserObject;
 import com.example.lyfuelgas.common.mvp.MVPBaseFragment;
 import com.example.lyfuelgas.common.utils.CallPhone;
 import com.example.lyfuelgas.common.utils.GlideUtils;
+import com.example.lyfuelgas.contact.DeliverAccountContact;
 import com.example.lyfuelgas.contact.HomeAccountContact;
+import com.example.lyfuelgas.presenter.DeliverAccountPresenter;
 import com.example.lyfuelgas.presenter.HomeAccountPresenter;
 import com.example.lyfuelgas.view.CustomConfirmDialog;
 
@@ -23,23 +22,19 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 
-public class HomeAccountFragment extends MVPBaseFragment<HomeAccountPresenter> implements HomeAccountContact.View {
+public class DeliverAccountFragment extends MVPBaseFragment<DeliverAccountPresenter> implements DeliverAccountContact.View {
     @BindView(R.id.ivPhoto)
     ImageView ivPhoto;
     @BindView(R.id.tvName)
     TextView tvName;
     @BindView(R.id.tvPhone)
     TextView tvPhone;
-    @BindView(R.id.tvMyDevices)
-    TextView tvMyDevices;
-    @BindView(R.id.tvClose)
-    TextView tvClose;
 
     UserObject userObject;
 
     @Override
     protected int getContentLayout() {
-        return R.layout.fragment_home_account;
+        return R.layout.fragment_deliver_account;
     }
 
     @Override
@@ -53,21 +48,13 @@ public class HomeAccountFragment extends MVPBaseFragment<HomeAccountPresenter> i
     }
 
     @Override
-    protected HomeAccountPresenter loadPresenter() {
-        return new HomeAccountPresenter();
+    protected DeliverAccountPresenter loadPresenter() {
+        return new DeliverAccountPresenter();
     }
 
-    @OnClick({R.id.ivPhoto, R.id.tvUpdatePassword, R.id.tvService, R.id.tvExit, R.id.tvMyDevices, R.id.tvClose})
+    @OnClick({R.id.ivPhoto, R.id.tvUpdatePassword, R.id.tvService, R.id.tvExit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tvMyDevices:
-                Bundle bundle = new Bundle();
-                bundle.putInt("type",1);
-                launchActivity(SelectDeviceActivity.class,false,bundle);
-                break;
-            case R.id.tvClose:
-                launchActivity(SettingClosedActivity.class);
-                break;
             case R.id.ivPhoto:
                 break;
             case R.id.tvUpdatePassword:

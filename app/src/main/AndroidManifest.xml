@@ -83,10 +83,13 @@
         </activity>
 
         <activity android:name=".activity.SelectDeviceActivity"/>
+        <activity android:name=".activity.DeviceMapActivity"/>
         <activity android:name=".activity.DeliverHomeActivity"/>
         <activity android:name=".activity.FillActivity"/>
         <activity android:name=".activity.DriveRouteActivity"/>
         <activity android:name=".activity.GuideListActivity"/>
+
+        <activity android:name=".activity.SettingClosedActivity"/>
     </application>
 
 </manifest>

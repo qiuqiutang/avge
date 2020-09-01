@@ -1,5 +1,6 @@
 package com.example.lyfuelgas.activity;
 
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.example.lyfuelgas.bean.DeviceTypeObject;
 import com.example.lyfuelgas.common.exit.PressExit;
 import com.example.lyfuelgas.common.mvp.MVPBaseActivity;
 import com.example.lyfuelgas.common.utils.GsonUtils;
+import com.example.lyfuelgas.common.utils.LyLog;
 import com.example.lyfuelgas.common.utils.ProgressDialogUtils;
 import com.example.lyfuelgas.common.utils.SPUtils;
 import com.example.lyfuelgas.contact.SelectDeviceContact;
@@ -38,6 +40,8 @@ public class SelectDeviceActivity extends MVPBaseActivity<SelectDevicePresenter>
     SimpleToolbar toolbar;
     @BindView(R.id.rvList)
     RecyclerView rvList;
+    //0：选择设备，1：修改设备
+    private int type = 0;
 
     List<TreeItem> items;
     TreeRecyclerAdapter mAdapter = new TreeRecyclerAdapter(TreeRecyclerType.SHOW_EXPAND);
@@ -54,7 +58,8 @@ public class SelectDeviceActivity extends MVPBaseActivity<SelectDevicePresenter>
 
     @Override
     protected void initData() {
-        toolbar.setMainTitle("选择设备");
+        type = getIntent().getIntExtra("type",0);
+        toolbar.setMainTitle(0 == type ? "选择设备" : "我的设备");
         rvList.setLayoutManager(new LinearLayoutManager(mContext));
         rvList.setAdapter(mAdapter);
 
@@ -76,6 +81,12 @@ public class SelectDeviceActivity extends MVPBaseActivity<SelectDevicePresenter>
             public void onItemClick(@NonNull ViewHolder viewHolder, int position) {
                 TreeItem treeItem = mAdapter.getItemManager().getItem(position);
                 if(treeItem.getData() instanceof DeviceObject){
+                    if(0 != type) {
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("device",(DeviceObject)treeItem.getData());
+                        launchActivity(DeviceMapActivity.class,false,bundle);
+                        return;
+                    }
                     SPUtils.put(mContext, UserManager.getInstance().getDeviceInfoKey(), GsonUtils.toJsonString((DeviceObject) treeItem.getData()));
                     setResult(RESULT_OK);
                     finish();
@@ -96,6 +107,22 @@ public class SelectDeviceActivity extends MVPBaseActivity<SelectDevicePresenter>
                     TreeItemGroup treeItemGroup = (TreeItemGroup) item;
                     treeItemGroup.setExpand(true);
                     this.items.set(i, treeItemGroup);
+                    List<TreeItem> childList = ((TreeItemGroup) treeItemGroup).getChild();
+                    for(TreeItem childItem : childList){
+                        childItem.setmInnerCallbackListener(new TreeItem.InnerCallbackListener() {
+                            @Override
+                            public void onClick(View v, TreeItem item) {
+                                DeviceObject deviceObject = (DeviceObject) item.getData();
+                                mPresenter.setDeviceTest(deviceObject.id, 0 == deviceObject.testStatus ? 1 : 0);
+                            }
+
+                            @Override
+                            public boolean isEdit() {
+                                return 0 != type;
+                            }
+
+                        });
+                    }
                 }
             }
 
@@ -110,7 +137,7 @@ public class SelectDeviceActivity extends MVPBaseActivity<SelectDevicePresenter>
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && 0 == type) {
             exit();
             return true;
         }

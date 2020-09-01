@@ -31,8 +31,7 @@ public abstract class TreeItem<D> {
 
     public interface InnerCallbackListener{
         void onClick(View v, TreeItem item);
-        int getChooseStatus();
-        boolean isShowRemark();
+        boolean isEdit();
     }
 
     public void setParentItem(TreeItemGroup parentItem) {
@@ -138,24 +137,14 @@ public abstract class TreeItem<D> {
         }
     }
 
-    /**
-     * 获取选择类型 0：不选，1：单选，2：多选
-     * @return
-     */
-    public int getChooseStatus(){
-        if(null != mInnerCallbackListener){
-            return mInnerCallbackListener.getChooseStatus();
-        }
-        return 0;
-    }
 
     /**
      * 是否显示备注
      * @return
      */
-    public boolean isShowRemark(){
+    public boolean isEdit(){
         if(null != mInnerCallbackListener){
-            return mInnerCallbackListener.isShowRemark();
+            return mInnerCallbackListener.isEdit();
         }
         return false;
     }

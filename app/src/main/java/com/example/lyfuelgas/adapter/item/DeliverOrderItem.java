@@ -50,6 +50,8 @@ public class DeliverOrderItem extends AbstractItem<OrderObject> {
         tvName.setText(o.contact);
         tvMobile.setText(o.customerMobile);
         StringBuilder sbOrderInfo = new StringBuilder();
+        sbOrderInfo.append(String.format("IMEI：%s",o.imei));
+        sbOrderInfo.append("\n");
         if(!TextUtils.isEmpty(o.amount)){
             sbOrderInfo.append(String.format("下单容量：%sL",o.amount));
             sbOrderInfo.append("\n");

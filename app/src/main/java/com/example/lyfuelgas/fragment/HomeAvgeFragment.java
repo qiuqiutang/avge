@@ -1,8 +1,12 @@
 package com.example.lyfuelgas.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -25,16 +29,22 @@ import com.example.lyfuelgas.bean.DeviceTypeObject;
 import com.example.lyfuelgas.bean.MeasureObject;
 import com.example.lyfuelgas.common.mvp.MVPBaseFragment;
 import com.example.lyfuelgas.common.utils.CallPhone;
+import com.example.lyfuelgas.common.utils.DensityUtils;
 import com.example.lyfuelgas.common.utils.GlideUtils;
 import com.example.lyfuelgas.common.utils.GsonUtils;
 import com.example.lyfuelgas.common.utils.SPUtils;
 import com.example.lyfuelgas.contact.HomeAvgeContact;
 import com.example.lyfuelgas.presenter.HomeAvgePresenter;
 import com.example.lyfuelgas.view.CustomAlertDialog;
+import com.example.lyfuelgas.view.VerticalProgressBar;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,20 +55,35 @@ import static android.app.Activity.RESULT_OK;
 public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> implements HomeAvgeContact.View {
 
     private static final String TAG = "HomeAvgeFragment";
-    @BindView(R.id.home_fm_fuel_tv)
-    TextView homeFmFuelTv;
-    @BindView(R.id.home_fm_fuel_iv)
-    ImageView homeFmFuelIv;
-    @BindView(R.id.home_fm_is_gas_iv)
+    @BindView(R.id.tvFuel)
+    TextView tvFuel;
+    @BindView(R.id.pb_fuel)
+    VerticalProgressBar pb_fuel;
+    @BindView(R.id.tvTemperature)
+    TextView homeFmTemperatureTv;
+    @BindView(R.id.tvDeviceType)
+    TextView tvDeviceType;
+    @BindView(R.id.imageView)
+    ImageView ivDevicePic;
+    @BindView(R.id.tvCapacity)
+    TextView tvCapacity;
+    @BindView(R.id.tvCountDown)
+    AppCompatTextView tvCountDown;
+    @BindView(R.id.layoutCountDown)
+    ConstraintLayout layoutCountDown;
+    @BindView(R.id.tvCountDownDesc)
+    TextView tvCountDownDesc;
+    @BindView(R.id.groupToxic)
+    Group groupToxic;
+    @BindView(R.id.groupFlammable)
+    Group groupFlammable;
+   /* @BindView(R.id.home_fm_is_gas_iv)
     ImageView homeFmIsGasIv;
     @BindView(R.id.home_fm_is_gas1_tv)
     TextView homeFmIsGas1Tv;
     @BindView(R.id.home_fm_is_gas_tv)
     TextView homeFmIsGasTv;
-    @BindView(R.id.home_fm_temperature_tv)
-    TextView homeFmTemperatureTv;
-    @BindView(R.id.home_fm_temperature_iv)
-    ImageView homeFmTemperatureIv;
+
 
     @BindView(R.id.home_fm_capacity_tv)
     TextView homeFmCapacityTv;
@@ -85,37 +110,27 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
     @BindView(R.id.lvCombustibleGas)
     ViewGroup lvCombustibleGas;
     @BindView(R.id.lvToxicGas)
-    ViewGroup lvToxicGas;
+    ViewGroup lvToxicGas;*/
 
 
 
-    private View view;
-    private String line = "88";
-    private String circle = "88";
-
-    private List<String> strings;
-    private BaseRecyclerAdapter<String> home_avge_recyclyer;
-    private RecyclerView recycleview;
 
 
     private DeviceTypeObject deviceTypeObject;
-    //private MeasureObject measureObject;
     private DeviceObject deviceObject;
 
     CustomAlertDialog alertDialog;
 
     @Override
     protected int getContentLayout() {
-        return R.layout.fragment_home_avge;
+        return R.layout.fragment_home;
     }
 
     @Override
     protected void initData() {
-        //initLineViewMsg(line, homeFmFuelIv);
-        initCircleViewMsg(circle, homeFmIsGasIv);
         mPresenter.getCustomer();
         setData();
-        alertDialog = CustomAlertDialog.newInstance("敬请期待");
+        alertDialog = CustomAlertDialog.newInstance("暂不支持当前设备");
     }
 
     @Override
@@ -134,93 +149,17 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
         String deviceInfo = (String) SPUtils.get(mContext, UserManager.getInstance().getDeviceInfoKey(), "");
         if (!TextUtils.isEmpty(deviceInfo)) {
             deviceObject = GsonUtils.parseJsonToBean(deviceInfo, DeviceObject.class);
-            //mPresenter.getMeasureInfo(deviceObject.imei);
             mPresenter.getDeviceInfo(deviceObject.id);
-            //mPresenter.getSupplier(deviceObject.supplierId);
             deviceTypeObject = DeviceTypeManager.getInstance().getDeviceType(deviceObject.equipmentTypeId);
             if (null != deviceTypeObject) {
                 tvDeviceType.setText(deviceTypeObject.name);
-                lvCombustibleGas.setVisibility(deviceTypeObject.isShowToxicGas() ? View.VISIBLE : View.GONE);
-                lvToxicGas.setVisibility(deviceTypeObject.isShowToxicGas() ? View.VISIBLE : View.GONE);
+                //groupFlammable.setVisibility(deviceTypeObject.isShowToxicGas() ? View.VISIBLE : View.GONE);
+                //groupToxic.setVisibility(deviceTypeObject.isShowToxicGas() ? View.VISIBLE : View.GONE);
             }
         }
     }
 
 
-    private void initLineViewMsg(String str, ImageView iv) {
-        int i = Integer.parseInt(str);
-
-        switch (i / 5) {
-            case 0:
-                iv.setImageResource(R.mipmap.line0);
-                break;
-            case 1:
-                iv.setImageResource(R.mipmap.line5);
-                break;
-            case 2:
-                iv.setImageResource(R.mipmap.line10);
-                break;
-            case 3:
-                iv.setImageResource(R.mipmap.line15);
-                break;
-            case 4:
-                iv.setImageResource(R.mipmap.line20);
-                break;
-            case 5:
-                iv.setImageResource(R.mipmap.line30);
-                break;
-            case 6:
-                iv.setImageResource(R.mipmap.line35);
-                break;
-            case 7:
-                iv.setImageResource(R.mipmap.line40);
-                break;
-            case 8:
-                iv.setImageResource(R.mipmap.line45);
-                break;
-            case 9:
-                iv.setImageResource(R.mipmap.line50);
-                break;
-            case 11:
-                iv.setImageResource(R.mipmap.line55);
-                break;
-            case 12:
-                iv.setImageResource(R.mipmap.line60);
-                break;
-            case 13:
-                iv.setImageResource(R.mipmap.line65);
-                break;
-            case 14:
-                iv.setImageResource(R.mipmap.line70);
-                break;
-            case 15:
-                iv.setImageResource(R.mipmap.line75);
-                break;
-            case 16:
-                iv.setImageResource(R.mipmap.line80);
-                break;
-            case 17:
-                iv.setImageResource(R.mipmap.line85);
-                break;
-            case 18:
-                iv.setImageResource(R.mipmap.line90);
-                break;
-            case 19:
-                if (i == 95) {
-                    iv.setImageResource(R.mipmap.line95);
-                } else if (i < 97 && i > 95) {
-                    iv.setImageResource(R.mipmap.line97);
-                } else {
-                    iv.setImageResource(R.mipmap.line99);
-                }
-                break;
-            case 20:
-                iv.setImageResource(R.mipmap.line100);
-                break;
-
-        }
-
-    }
 
     private void initCircleViewMsg(String str, ImageView iv) {
         int i = Integer.parseInt(str);
@@ -364,43 +303,35 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
         getActivity().getWindow().setAttributes(layoutParams);
     }
 
-    @OnClick({R.id.avge_touch, R.id.ivSwitch, R.id.fm_avge_news, R.id.home_fm_is_gas_iv, R.id.home_fm_temperature_tv, R.id.home_fm_temperature_iv, R.id.home_fm_capacity_tv, R.id.home_fm_time_remaining_tv, R.id.avge_auto_fl, R.id.avge_auto_iv, R.id.avge_diagnose_iv, R.id.avge_msg_iv})
+    @OnClick({R.id.layoutAlarm,
+            R.id.layoutStat,
+            R.id.ivSwitch,
+            R.id.layoutFill,
+            R.id.layoutAutoContrl,
+            R.id.layoutSensing})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.avge_touch:
+            case R.id.layoutAlarm:
                 CallPhone.call(getActivity(), "119");
                 break;
-            case R.id.home_fm_is_gas_iv:
-                break;
-            case R.id.home_fm_temperature_tv:
-                break;
-            case R.id.home_fm_temperature_iv:
-                break;
-            case R.id.home_fm_capacity_tv:
-                break;
-            case R.id.home_fm_time_remaining_tv:
-                break;
-            case R.id.avge_auto_fl:
+            case R.id.layoutAutoContrl:
                 alertDialog.show(getFragmentManager(),"pending");
                 //launchActivity(AvgeAutoActivity.class);
                 break;
-            case R.id.avge_auto_iv:
+            case R.id.layoutFill:
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("device",deviceObject);
                 bundle.putSerializable("deviceType",deviceTypeObject);
                 launchActivity(AvgeFillActivity.class,false,bundle);
                 break;
-            case R.id.avge_diagnose_iv:
+            case R.id.layoutSensing:
                 alertDialog.show(getFragmentManager(),"pending");
                 //startActivity(new Intent(getContext(), AvgeDiagnoseActivity.class));
                 break;
-            case R.id.avge_msg_iv:
-                alertDialog.show(getFragmentManager(),"pending");
-                //startActivity(new Intent(getContext(), AvgeMassageActivity.class));
-                break;
-            case R.id.fm_avge_news:
-                alertDialog.show(getFragmentManager(),"pending");
-                //startActivity(new Intent(getContext(), NewsActivity.class));
+            case R.id.layoutStat:
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("phone",deviceObject.supplierMobile);
+                launchActivity(AvgeMassageActivity.class,false,bundle1);
                 break;
             case R.id.ivSwitch:
                 launchActivityForResult(SelectDeviceActivity.class,null, 110);
@@ -408,6 +339,8 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
 
         }
     }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -439,19 +372,39 @@ public class HomeAvgeFragment extends MVPBaseFragment<HomeAvgePresenter> impleme
         if(null != data){
             deviceObject = data;
             homeFmTemperatureTv.setText(String.format("%.1f ℃", deviceObject.temperature));
-            String fuelStr = deviceObject.height <= 0 ? "0" : String.valueOf((int)(((deviceObject.liquid*10) /(deviceObject.height*10) )*100));
-            homeFmFuelTv.setText(deviceObject.remainPercent+"%");
-            initLineViewMsg(String.valueOf((int)(deviceObject.remainPercent)), homeFmFuelIv);
+            tvFuel.setText(deviceObject.remainPercent+"%");
+            pb_fuel.setProgress((int)(deviceObject.remainPercent));
             GlideUtils.loadImageView(mContext,deviceObject.picUrl,ivDevicePic);
+            tvCapacity.setText(String.format("%.2fL",deviceObject.getCapacity()));
+            Drawable drawable = getResources().getDrawable(
+                    R.drawable.ico_waring);
+            // / 这一步必须要做,否则不会显示.
+            drawable.setBounds(0, 0, drawable.getMinimumWidth(),
+                    drawable.getMinimumHeight());
+            tvCountDown.setText(deviceObject.getMaxTime());
+            if(1 == deviceObject.liquidAbStatus) {
+                tvFuel.setTextColor(Color.RED);
+                tvFuel.setCompoundDrawables(null, null, drawable, null);
+                tvFuel.setCompoundDrawablePadding(4);
+            }else {
+                tvFuel.setTextColor(getResources().getColor(R.color.home_head_text));
+                tvFuel.setCompoundDrawables(null, null, null, null);
+            }
 
-            homeFmCapacityTv.setText(String.format("%.2fL",deviceObject.capacity/100f));
+            if(1 == deviceObject.temperatureAbStatus) {
+                homeFmTemperatureTv.setTextColor(Color.RED);
+                homeFmTemperatureTv.setCompoundDrawables(null, null, drawable, null);
+                homeFmTemperatureTv.setCompoundDrawablePadding(4);
+            }else {
+                homeFmTemperatureTv.setTextColor(getResources().getColor(R.color.home_head_text));
+                homeFmTemperatureTv.setCompoundDrawables(null, null, null, null);
+            }
         }else {
             homeFmTemperatureTv.setText("--℃");
-            homeFmFuelTv.setText("--");
+            tvFuel.setText("--");
         }
-        homeFmIsGas1Tv.setText("--");
-        homeFmIsGasTv.setText("--");
-        homeFmTimeRemainingTv.setText("--");
+        //homeFmIsGas1Tv.setText("--");
+        //homeFmIsGasTv.setText("--");
     }
 
     @Override

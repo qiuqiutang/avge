@@ -9,6 +9,7 @@ import com.example.lyfuelgas.adapter.HomeActivityAdapter;
 import com.example.lyfuelgas.common.exit.PressExit;
 import com.example.lyfuelgas.common.mvp.BasePresenter;
 import com.example.lyfuelgas.common.mvp.MVPBaseActivity;
+import com.example.lyfuelgas.fragment.DeliverAccountFragment;
 import com.example.lyfuelgas.fragment.DeliverHomeMapFragment;
 import com.example.lyfuelgas.fragment.DeliverHomeOrderFragment;
 import com.example.lyfuelgas.fragment.HomeAccountFragment;
@@ -92,7 +93,7 @@ public class DeliverHomeActivity extends MVPBaseActivity {
         });
         mList.add(deliverHomeMapFragment);
         mList.add(new DeliverHomeOrderFragment());
-        mList.add(new HomeAccountFragment());
+        mList.add(new DeliverAccountFragment());
         return mList;
     }
 }

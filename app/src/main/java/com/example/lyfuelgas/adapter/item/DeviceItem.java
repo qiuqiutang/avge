@@ -1,5 +1,7 @@
 package com.example.lyfuelgas.adapter.item;
 
+import android.view.View;
+
 import com.example.lyfuelgas.R;
 import com.example.lyfuelgas.bean.DeviceObject;
 import com.example.lyfuelgas.view.treerecycleview.base.ViewHolder;
@@ -25,6 +27,15 @@ public class DeviceItem extends TreeItem<DeviceObject> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder) {
         holder.setText(R.id.tvName, "编号:"+data.code+"\nimei:"+data.imei);
+        holder.setVisible(R.id.ivClosed, isEdit());
+        holder.getImageView(R.id.ivClosed).setSelected(1 == data.testStatus);
+        holder.setOnClickListener(R.id.ivClosed, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onInnerCallBack(v);
+            }
+
+        });
     }
 
 

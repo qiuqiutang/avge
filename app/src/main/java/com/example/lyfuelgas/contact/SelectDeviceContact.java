@@ -25,5 +25,12 @@ public class SelectDeviceContact {
          */
         void getDeviceTypeList();
 
+        /**
+         * 设置设备测试状态
+         * @param deviceId
+         * @param status
+         */
+        void setDeviceTest(String deviceId, int status);
+
     }
 }

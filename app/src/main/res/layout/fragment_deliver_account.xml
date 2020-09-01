@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".fragment.HomeAvgeFragment">
 
-    <RelativeLayout
-        android:id="@+id/simple_toolbar"
+    <RelativeLayout android:id="@+id/simple_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimaryDark">
@@ -15,150 +14,102 @@
             android:id="@+id/txt_main_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:gravity="center"
+            android:layout_centerVertical="true"
             android:singleLine="true"
             android:text="个人信息"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:focusableInTouchMode="true"
+            android:focusable="true"/>
 
 
     </RelativeLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/simple_toolbar">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
+            android:orientation="vertical"
+            >
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/ivPhoto"
+                android:padding="16dp"
+                android:background="@color/colorPrimaryDark">
+                <ImageView android:id="@+id/ivPhoto"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="16dp"
-                    android:src="@drawable/img_avator" />
-
+                    android:src="@drawable/img_avator"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignTop="@+id/ivPhoto"
                     android:layout_alignBottom="@+id/ivPhoto"
                     android:layout_toRightOf="@+id/ivPhoto"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvName"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical">
+                    <TextView android:id="@+id/tvName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="dkkdkdkd"
-                        android:textColor="@color/white" />
-
-                    <TextView
-                        android:id="@+id/tvPhone"
+                        android:textColor="@color/white"/>
+                    <TextView android:id="@+id/tvPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="dkkdkdkd"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"/>
                 </LinearLayout>
 
             </RelativeLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@color/white"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tvMyDevices"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ico_device"
-                    android:drawableRight="@drawable/ico_next"
-                    android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:text="我的设备"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_primary" />
-                <View style="@style/separation_line_style" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tvClose"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ico_closed"
-                    android:drawableRight="@drawable/ico_next"
-                    android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
-                    android:padding="16dp"
-                    android:text="营业状态"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/text_primary" />
-                <View style="@style/separation_line_style" />
-                <TextView
-                    android:id="@+id/tvUpdatePassword"
+                android:orientation="vertical"
+                android:background="@color/white">
+                <TextView android:id="@+id/tvUpdatePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ico_edit"
                     android:drawableRight="@drawable/ico_next"
                     android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
                     android:padding="16dp"
+                    android:gravity="center_vertical"
                     android:text="更改密码"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_primary" />
-
-                <View style="@style/separation_line_style" />
-
-                <TextView
-                    android:id="@+id/tvService"
+                    />
+                <View style="@style/separation_line_style"/>
+                <TextView android:id="@+id/tvService"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ico_tel"
                     android:drawableRight="@drawable/ico_next"
                     android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
                     android:padding="16dp"
+                    android:gravity="center_vertical"
                     android:text="客服热线"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_primary" />
-
-                <View style="@style/separation_line_style" />
-
-                <TextView
-                    android:id="@+id/tvExit"
+                    />
+                <View style="@style/separation_line_style"/>
+                <TextView android:id="@+id/tvExit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ico_exit"
                     android:drawableRight="@drawable/ico_next"
                     android:drawablePadding="10dp"
-                    android:gravity="center_vertical"
                     android:padding="16dp"
+                    android:gravity="center_vertical"
                     android:text="退出登录"
+                    android:textSize="@dimen/text_primary"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/text_primary" />
+                    />
 
             </LinearLayout>
         </LinearLayout>

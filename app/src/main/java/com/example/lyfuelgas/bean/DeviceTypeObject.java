@@ -18,7 +18,7 @@ public class DeviceTypeObject extends BaseObject {
      * properties (object, optional)
      */
     public int area;
-    public int capacity;
+    public String capacity;
     public int height;
     public String id;
     public String name;

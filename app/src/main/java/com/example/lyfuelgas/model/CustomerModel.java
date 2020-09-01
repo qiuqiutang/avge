@@ -33,5 +33,31 @@ public class CustomerModel extends IModel {
             putSubscription(subscribe);
     }
 
+    /**
+     * 设置营业状态
+     * @param subscriber
+     */
+    public void getClosedStatus(BaseSubscriber<BaseResponse<Integer>> subscriber){
+        Subscription subscribe = RestClient
+                .getApiService(mContext)
+                .getCustomerCloseStatus().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+        putSubscription(subscribe);
+    }
+    /**
+     * 设置营业状态
+     * @param status
+     * @param subscriber
+     */
+    public void setClosedStatus(int status, BaseSubscriber<BaseResponse> subscriber){
+        Subscription subscribe = RestClient
+                .getApiService(mContext)
+                .setCustomerCloseStatus(status).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+        putSubscription(subscribe);
+    }
+
 
 }

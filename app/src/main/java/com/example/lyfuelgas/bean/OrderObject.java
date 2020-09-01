@@ -40,6 +40,7 @@ public class OrderObject extends BaseObject implements Comparable<OrderObject>{
     public int status;
     public String supplierId;
     public String supplierMobile;
+    public String imei;
 
     public double distance;
 
